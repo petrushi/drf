@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from django.contrib.auth.models import User
+from users.models import User
 from django.db.utils import IntegrityError
 
 
@@ -65,8 +65,10 @@ class Command(BaseCommand):
 
         while created_users < desired_test_users:
             try:
-                User.objects.create_user(username=f'test_user_{test_user_idx}')
+                User.objects.create_user(username=f'test_user_{test_user_idx}',
+                                         email=f'{test_user_idx}@fake.email')
                 created_users += 1
+
             except IntegrityError:
                 test_user_idx += 1
                 continue
