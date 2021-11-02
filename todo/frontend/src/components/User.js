@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const  UserItem = ({user}) => {
+const UserItem = ({ user }) => {
 
     return (
         <tr>
@@ -18,28 +18,33 @@ const  UserItem = ({user}) => {
                 {user.email}
             </td>
         </tr>
+
     )
 }
 
-const UserList = ({users}) => {
+const UserList = ({ users }) => {
     return (
-        <table>
-            <th>
-                Username
-            </th>
-            <th>
-                First name
-            </th>
-            <th>
-                Last name
-            </th>
-            <th>
-                Email
-            </th>
+        <div class='users'>
 
-            {users.map((user)=> <UserItem user={user}/>)}
+            <table>
+                <th>
+                    Username
+                </th>
+                <th>
+                    First name
+                </th>
+                <th>
+                    Last name
+                </th>
+                <th>
+                    Email
+                </th>
 
-        </table>
+                {users.map((user) => <UserItem user={user} />)}
+
+            </table>
+        </div>
+
     )
 }
 
