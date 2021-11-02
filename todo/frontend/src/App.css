@@ -1,0 +1,27 @@
+html, body, #app, #app>div {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+#root, .container {
+  height: 100%;
+}
+.main {
+  display: flex;
+  height: 100%;
+}
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+.menu button{
+  margin: 25px;
+}
+.users {
+  margin: 20px auto;
+}
+.footer {
+  background-color: #bbbbbb;
+  margin-top: -50px;
+  height: 50px;
+}
