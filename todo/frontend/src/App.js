@@ -19,9 +19,9 @@ class App extends React.Component {
             .then(response => {
                 const users = response.data
                 this.setState({ 'users': users })
-            }).catch(error => console.log(error))
+            })
+            .catch(error => console.log(error))
     }
-
 
     render() {
         return (
