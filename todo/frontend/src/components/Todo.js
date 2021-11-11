@@ -1,23 +1,5 @@
 import React from 'react';
-
-const TodoItem = ({ todo }) => {
-    return (
-        <tr>
-            <td>
-                {todo.text}
-            </td>
-            <td>
-                {todo.project}
-            </td>
-            <td>
-                {todo.created_at}
-            </td>
-            <td>
-                {todo.is_active}
-            </td>
-        </tr>
-    )
-}
+import TodoItem from './TodoItem';
 
 const TodoList = ({ todos }) => {
     return (

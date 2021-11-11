@@ -1,10 +1,9 @@
-import TodoItem from "./TodoItem";
 import { useParams } from 'react-router-dom';
 
-
-const ProjectTodoList = ({ todos }) => {
+const UserInfo = ({ todos,projects }) => {
     let { id } = useParams();
-    let filteredTodos = todos.filter(todo => todo.project.toString().includes(id))
+    let filteredTodos = todos.filter(todo => todo.author.toString().includes(id))
+    let filteredProjects = projects.filter(project => project.users.toString().includes(id))
     return (
         <div className='todos table'>
             <h2>List of ToDos for Project {id}</h2>
@@ -13,7 +12,6 @@ const ProjectTodoList = ({ todos }) => {
                     <tr>
                         <th>Text</th>
                         <th>Author</th>
-                        <th>Created at</th>
                         <th>Is active</th>
                     </tr>
                 </thead>
@@ -25,4 +23,4 @@ const ProjectTodoList = ({ todos }) => {
     )
 }
 
-export default ProjectTodoList;
+export default UserInfo;

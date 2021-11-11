@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import UserList from './components/User.js';
 import ProjectList from './components/Project.js';
 import TodoList from './components/Todo.js';
-import ProjectTodos from './components/ProjectTodos'
+import ProjectTodoList from './components/ProjectTodos'
 import NotFound404 from './components/NotFound404';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
@@ -52,13 +52,19 @@ class App extends React.Component {
                         <Menu></Menu>
                         <Switch>
                             <Route exact path='/' component={() => <UserList users={this.state.users} />} />
-                            <Redirect from='/users' to='/'/>
+                            
+                            {/* <Route path='/users/:id'>
+                                <UserInfo todos={this.state.todos} projects={this.state.projects}/>
+                            </Route> */}
 
                             <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects} />} />
+                            <Route path='/projects/:id'>
+                                <ProjectTodoList todos={this.state.todos}/>
+                            </Route>
+
                             <Route exact path='/todos' component={() => <TodoList todos={this.state.todos} />} />
-                            {/* <Route path='/project/:id'>
-                                <ProjectTodos todos={this.state.todos}/>
-                            </Route> */}
+                            <Redirect from='/users' to='/'/>
+
                             <Route component={NotFound404} />
                         </Switch>
                     </BrowserRouter>
