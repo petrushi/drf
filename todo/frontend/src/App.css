@@ -14,10 +14,11 @@ html, body, #app, #app>div {
   display: flex;
   flex-direction: column;
 }
-.menu button{
-  margin: 25px;
+.menu li{
+  background-color: #fff;
+  margin: 30px;
 }
-.users {
+.table {
   margin: 20px auto;
 }
 .footer {
