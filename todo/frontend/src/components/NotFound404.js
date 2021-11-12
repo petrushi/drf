@@ -1,6 +1,6 @@
-const NotFound404=({location}) =>{
+const NotFound404 = ({ location }) => {
 
-    return(
+    return (
         <div className='table'>
             <h2>Страница по адресу '{location.pathname}'не найдена</h2>
         </div>

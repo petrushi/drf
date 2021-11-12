@@ -8,6 +8,7 @@ const TodoList = ({ todos }) => {
                 <thead>
                     <tr>
                         <th>Text</th>
+                        <th>Author</th>
                         <th>Project</th>
                         <th>Created date</th>
                         <th>Is active</th>

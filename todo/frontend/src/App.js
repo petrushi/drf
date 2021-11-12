@@ -7,6 +7,7 @@ import UserList from './components/User.js';
 import ProjectList from './components/Project.js';
 import TodoList from './components/Todo.js';
 import ProjectTodoList from './components/ProjectTodos'
+import UserInfo from './components/UserInfo';
 import NotFound404 from './components/NotFound404';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
@@ -53,9 +54,9 @@ class App extends React.Component {
                         <Switch>
                             <Route exact path='/' component={() => <UserList users={this.state.users} />} />
                             
-                            {/* <Route path='/users/:id'>
+                            <Route path='/users/:id'>
                                 <UserInfo todos={this.state.todos} projects={this.state.projects}/>
-                            </Route> */}
+                            </Route>
 
                             <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects} />} />
                             <Route path='/projects/:id'>

@@ -13,7 +13,13 @@ const ProjectItem = ({ project }) => {
                 <a href={project.link}>{project.link}</a>
             </td>
             <td>
-                {project.users}
+                {project.users.map(user => {
+                    return (
+                        <Link to={`users/${user}`}>
+                            {user}
+                        </Link>
+                    )
+                }).reduce((prev, curr) => [prev, ' ', curr], '')}
             </td>
         </tr>
     )

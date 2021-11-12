@@ -13,6 +13,7 @@ const ProjectTodoList = ({ todos }) => {
                     <tr>
                         <th>Text</th>
                         <th>Author</th>
+                        <th>Project</th>
                         <th>Created at</th>
                         <th>Is active</th>
                     </tr>
