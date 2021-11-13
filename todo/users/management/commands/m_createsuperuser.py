@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from users.models import User
+from users.models import TodoUser
 from django.db.utils import IntegrityError
 
 
@@ -23,9 +23,9 @@ class Command(BaseCommand):
             raise CommandError(f'Пользователь {user.username} существует, но без прав суперпользователя.')
 
     def _create_new_superuser(self, username, password, email):
-        return User.objects.create_superuser(username=username,
-                                             password=password,
-                                             email=email)
+        return TodoUser.objects.create_superuser(username=username,
+                                                 password=password,
+                                                 email=email)
 
     def _get_test_users(self):
         while True:
@@ -47,8 +47,8 @@ class Command(BaseCommand):
         username, password, email = self._get_username_and_password()
 
         try:
-            user = User.objects.get(username=username)
-        except User.DoesNotExist:
+            user = TodoUser.objects.get(username=username)
+        except TodoUser.DoesNotExist:
             try:
                 user = self._create_new_superuser(username, password, email)
                 user.save()
@@ -65,8 +65,8 @@ class Command(BaseCommand):
 
         while created_users < desired_test_users:
             try:
-                User.objects.create_user(username=f'test_user_{test_user_idx}',
-                                         email=f'{test_user_idx}@fake.email')
+                TodoUser.objects.create_user(username=f'test_user_{test_user_idx}',
+                                             email=f'{test_user_idx}@fake.email')
                 created_users += 1
             except IntegrityError:
                 test_user_idx += 1
