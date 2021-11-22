@@ -24,21 +24,22 @@ class TestProjectViewSet(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_edit_admin(self):
-        user = TodoUser.objects.create(username='test', first_name='test',
-                                       last_name='test', email='test@test')
         project = Project.objects.create(
-            name='Test', link='https://github.com')
-        response = self.client.put(f'{self.url}{project.id}/',
-                                   project.users.set([user]))
+            name='OLD', link='https://github.com')
+
         admin = TodoUser.objects.create_superuser('admin2', 'idi@amin' '1')
         self.client.force_login(admin)
         response = self.client.put(f'{self.url}{project.id}/',
-                                   {'name': 'New', 'link': project.link})
+                                   {'name': 'NEW', 'link': project.link})
         updated_project = Project.objects.get(id=project.id)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(updated_project.name, 'New')
+        self.assertEqual(updated_project.name, 'NEW')
+
         self.client.logout()
+
+    def tearDown(self) -> None:
+        pass
 
 
 class TestTodoViewSet(APITestCase):
@@ -76,3 +77,8 @@ class TestTodoViewSet(APITestCase):
 
         self.assertEqual(put_response.status_code, status.HTTP_200_OK)
         self.assertEqual(new_response.data['text'], 'NEW')
+
+        self.client.logout()
+
+    def tearDown(self) -> None:
+        pass
