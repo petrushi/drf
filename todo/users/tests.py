@@ -50,10 +50,8 @@ class TestUserViewSet(TestCase):
                        'last_name': 'last_name', 'email': 'gxcc@sdasd'},
             format='json'
         )
-
         admin = TodoUser.objects.create_superuser('admin2', 'idi@amin' '1')
         force_authenticate(request, admin)
-
         view = UserModelViewSet.as_view({'post': 'create'})
         response = view(request)
 
@@ -67,10 +65,8 @@ class TestUserViewSet(TestCase):
                        'first_name': 'new_name', 'last_name': 'last_name'},
             format='json'
         )
-
         admin = TodoUser.objects.create_superuser('admin2', 'idi@amin' '1')
         force_authenticate(request, admin)
-
         view = UserModelViewSet.as_view({'post': 'create'})
         response = view(request)
 
@@ -79,9 +75,7 @@ class TestUserViewSet(TestCase):
     def test_create_admin_same_email(self):
         # создать APIRequestFactory
         factory = APIRequestFactory()
-
         admin = TodoUser.objects.create_superuser('admin2', 'idi@amin' '1')
-
         first_request = factory.post(
             self.url, {'username': 'same', 'first_name': 'new_name',
                        'last_name': 'last_name', 'email': 'same@email'},
@@ -92,7 +86,6 @@ class TestUserViewSet(TestCase):
                        'last_name': 'last_name2', 'email': 'same@email'},
             format='json'
         )
-
         force_authenticate(first_request, admin)
         force_authenticate(second_request, admin)
 

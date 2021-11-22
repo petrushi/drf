@@ -30,10 +30,8 @@ class TestProjectViewSet(APITestCase):
             name='Test', link='https://github.com')
         response = self.client.put(f'{self.url}{project.id}/',
                                    project.users.set([user]))
-
         admin = TodoUser.objects.create_superuser('admin2', 'idi@amin' '1')
         self.client.force_login(admin)
-
         response = self.client.put(f'{self.url}{project.id}/',
                                    {'name': 'New', 'link': project.link})
         updated_project = Project.objects.get(id=project.id)
@@ -56,14 +54,12 @@ class TestTodoViewSet(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_detail(self):
-
         todo = mixer.blend(Todo)
         response = self.client.get(f'{self.url}{todo.id}/')
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_edit_guest(self):
-
         todo = mixer.blend(Todo)
         response = self.client.put(
             f'{self.url}{todo.id}/', {'text': 'new text'})
