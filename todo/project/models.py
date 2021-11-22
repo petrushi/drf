@@ -5,7 +5,7 @@ from users.models import TodoUser
 class Project(models.Model):
     name = models.CharField(max_length=64)
     link = models.URLField(max_length=200)
-    users = models.ManyToManyField(TodoUser)
+    users = models.ManyToManyField(TodoUser, blank=True)
 
     def __str__(self):
         return self.name
