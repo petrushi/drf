@@ -1,7 +1,8 @@
-from .models import TodoUser
-from .serializers import UserModelSerializer
+from rest_framework import mixins, viewsets
+
 from .filters import UserFilter
-from rest_framework import viewsets, mixins
+from .models import TodoUser
+from .serializers import UserModelSerializer, UserModelSerializerExtended
 
 
 class UserModelViewSet(viewsets.GenericViewSet,
@@ -10,5 +11,9 @@ class UserModelViewSet(viewsets.GenericViewSet,
                        mixins.UpdateModelMixin,
                        mixins.CreateModelMixin):
     queryset = TodoUser.objects.all()
-    serializer_class = UserModelSerializer
     filterset_class = UserFilter
+
+    def get_serializer_class(self):
+        if self.request.version == '2':
+            return UserModelSerializerExtended
+        return UserModelSerializer
