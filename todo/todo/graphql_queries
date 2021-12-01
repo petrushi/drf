@@ -1,0 +1,31 @@
+# {
+# 		todosByAuthor(username:"test_user_0"){
+#     text
+#   }
+# }
+# {
+#   userById(id: 1){
+#     username
+#   }
+# }
+# mutation updateTodo{
+#   updateTodo(isActive:false, id:1){
+#     todo{
+#       text
+#     }
+#   }
+# }
+{
+  allTodos{
+    id
+    author{
+      username
+    }
+    project{
+      id
+      users{
+        username
+      }
+    }
+  }
+}
