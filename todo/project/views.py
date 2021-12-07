@@ -40,10 +40,10 @@ class TodoModelViewSet(ModelViewSet):
             return TodoModelSerializerExtended
         return TodoModelSerializer
 
-    def destroy(self, request, pk=None):
-        instance = self.get_object()
-        instance.is_active = False
-        instance.save()
+    # def destroy(self, request, pk=None):
+    #     instance = self.get_object()
+    #     instance.is_active = False
+    #     instance.save()
 
-        response = {'message': 'ToDo set to inactive.'}
-        return Response(response, status=status.HTTP_200_OK)
+    #     response = {'message': 'ToDo set to inactive.'}
+    #     return Response(response, status=status.HTTP_200_OK)

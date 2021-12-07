@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 
-const TodoItem = ({ todo }) => {
+const TodoItem = ({ todo, deleteTodo }) => {
     return (
         <tr>
             <td>
@@ -22,6 +22,9 @@ const TodoItem = ({ todo }) => {
             </td>
             <td>
                 {todo.isActive.toString()}
+            </td>
+            <td>
+                <button onClick={() => deleteTodo(todo.id)} type='button'>Delete</button>
             </td>
         </tr>
     )
