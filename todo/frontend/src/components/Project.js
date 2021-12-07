@@ -37,7 +37,7 @@ class ProjectList extends React.Component {
         let filteredProjects = this.props.projects.filter(project => {
             return project.name.toLowerCase().includes(e.target.value.toLowerCase())
         })
-        this.setState({'projects': filteredProjects})
+        this.setState({ 'projects': filteredProjects })
     }
     render() {
         return (

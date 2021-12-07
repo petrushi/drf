@@ -54,10 +54,6 @@ class App extends React.Component {
         const data = { text: text, project: project, author: author, isActive: isActive }
         axios.post(`http://127.0.0.1:8000/api/todos/?version=2`, data, { headers })
             .then(response => {
-                // let newProject = response.data
-                // let users = this.state.users.filter((item) => item.id == newProject.users)[0]
-                // newProject.users = users
-                // this.setState({ projects: [...this.state.projects, newProject] })
                 this.loadData()
             }).catch(error => {
                 console.log(error)
