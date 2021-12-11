@@ -64,8 +64,7 @@ class Command(BaseCommand):
                                                     email=new_email)
                 created_users += 1
                 pass
-        self.stdout.write(f'Created {str(test_idx)} test users')
-        test_idx = 0
+        self.stdout.write(f'Created {desired_dummy} test users')
 
         for i in range(desired_dummy):
             proj = Project.objects.create(
