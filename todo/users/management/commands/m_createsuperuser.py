@@ -14,13 +14,16 @@ class Command(BaseCommand):
 
     def _require_identical_configuration(self, user, password, email):
         if not user.check_password(password):
-            raise CommandError(f'Пользователь {user.username} существует с другим паролем.')
+            raise CommandError(
+                f'Пользователь {user.username} существует с другим паролем.')
 
         if user.email != email:
-            raise CommandError(f'Пользователь {user.username} существует с другим е-мейл адресом')
+            raise CommandError(
+                f'Пользователь {user.username} существует с другим е-мейл адресом')
 
         if not user.is_superuser:
-            raise CommandError(f'Пользователь {user.username} существует, но без прав суперпользователя.')
+            raise CommandError(
+                f'Пользователь {user.username} существует, но без прав суперпользователя.')
 
     def _create_new_superuser(self, username, password, email):
         return TodoUser.objects.create_superuser(username=username,
@@ -29,7 +32,8 @@ class Command(BaseCommand):
 
     def _get_test_users(self):
         while True:
-            test_users = input('Введите количество пользователей(по умолчанию 3): ')
+            test_users = input(
+                'Введите количество пользователей(по умолчанию 3): ')
             if test_users == '':
                 test_users = 3
                 break
@@ -53,12 +57,15 @@ class Command(BaseCommand):
                 user = self._create_new_superuser(username, password, email)
                 user.save()
             except Exception as e:
-                raise CommandError(f'Не удалось создать суперпользователя: {e}')
+                raise CommandError(
+                    f'Не удалось создать суперпользователя: {e}')
 
-            self.stdout.write(self.style.SUCCESS(f'Суперпользователь "{username}" создан.'))
+            self.stdout.write(self.style.SUCCESS(
+                f'Суперпользователь "{username}" создан.'))
         else:
             self._require_identical_configuration(user, password, email)
-            self.stdout.write(self.style.SUCCESS(f'Суперпользователь {username} уже существует.'))
+            self.stdout.write(self.style.SUCCESS(
+                f'Суперпользователь {username} уже существует.'))
 
         desired_test_users = self._get_test_users()
         test_user_idx, created_users = 0, 0

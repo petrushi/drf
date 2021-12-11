@@ -1,11 +1,7 @@
 import graphene
-from project.models import Todo, Project
-from users.models import TodoUser
 from graphene_django.types import DjangoObjectType
-
-
-class Query(graphene.ObjectType):
-    hello = graphene.String(default_value='Hi!')
+from project.models import Project, Todo
+from users.models import TodoUser
 
 
 class UserType(DjangoObjectType):
