@@ -7,6 +7,7 @@ class Command(BaseCommand):
     Команда создает токен для пользователя. 
     Формат - "python manage.py maketoken *username* *password*".
     """
+
     def add_arguments(self, parser):
         parser.add_argument('username')
         parser.add_argument('password')
