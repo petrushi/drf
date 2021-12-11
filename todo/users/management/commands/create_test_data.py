@@ -1,6 +1,7 @@
-import psycopg2
-from project.models import Project, Todo
+from django.core.management.base import BaseCommand, CommandError
 from users.models import TodoUser
+from project.models import Project, Todo
+import psycopg2
 
 
 class Command(BaseCommand):
