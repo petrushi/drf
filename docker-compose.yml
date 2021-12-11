@@ -10,6 +10,11 @@ services:
       POSTGRES_USER: st
       POSTGRES_PASSWORD: qwerty
       POSTGRES_DB: db
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "db", "-U", "st" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
   backend:
     build: ./todo
     privileged: true
@@ -17,11 +22,13 @@ services:
       - 8080:8080
     command:
       bash -c "
-      sleep 5 &&
       python manage.py migrate &&
       python manage.py create_test_data admin 1 email@admin &&
       gunicorn todo.wsgi -b 0.0.0.0:8080"
     depends_on:
+      db:
+        condition: service_healthy
+    links:
       - db
   nginx:
     build: ./nginx
