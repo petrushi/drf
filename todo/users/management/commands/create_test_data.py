@@ -1,10 +1,6 @@
-from django.core.management.base import BaseCommand, CommandError
-from users.models import TodoUser
-from project.models import Project, Todo
-from django.db.utils import IntegrityError
-import sys
 import psycopg2
-from django.db import transaction
+from project.models import Project, Todo
+from users.models import TodoUser
 
 
 class Command(BaseCommand):
@@ -52,7 +48,7 @@ class Command(BaseCommand):
                     f'Суперпользователь {username} уже существует.'))
 
         desired_dummy = 3
-        test_idx, created_users, created_projects, created_todos = 0, 0, 0, 0
+        test_idx, created_users = 0, 0
 
         while created_users < desired_dummy:
             new_username = f'test_user_{test_idx}'

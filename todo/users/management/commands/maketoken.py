@@ -1,5 +1,5 @@
-from django.core.management import BaseCommand
 import requests
+from django.core.management import BaseCommand
 
 
 class Command(BaseCommand):

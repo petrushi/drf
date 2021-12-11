@@ -1,13 +1,15 @@
+from collections import OrderedDict
+
 import rest_framework.utils.serializer_helpers
 from django.test import TestCase
-from rest_framework import status
-from rest_framework.test import APIRequestFactory, force_authenticate, APIClient, APISimpleTestCase, APITestCase
 from mixer.backend.django import mixer
-from django.contrib.auth.models import User
+from rest_framework import status
+from rest_framework.test import (APIClient, APIRequestFactory,
+                                 APISimpleTestCase, APITestCase,
+                                 force_authenticate)
 
-from .views import UserModelViewSet
 from .models import TodoUser
-from collections import OrderedDict
+from .views import UserModelViewSet
 
 
 class TestUserViewSet(TestCase):
