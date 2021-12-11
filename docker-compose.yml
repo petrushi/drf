@@ -17,8 +17,22 @@ services:
       - 8080:8080
     command:
       bash -c "
-      sleep 15 && 
-      python manage.py migrate && 
-      python manage.py runserver 0.0.0.0:8080"
+      sleep 5 &&
+      python manage.py migrate &&
+      python manage.py create_test_data admin 1 email@admin &&
+      gunicorn todo.wsgi -b 0.0.0.0:8080"
     depends_on:
       - db
+  nginx:
+    build: ./nginx
+    ports:
+      - 8000:80
+    depends_on:
+      - backend
+  frontend:
+    build: ./frontend
+    ports:
+      - 80:80
+    depends_on:
+      - nginx
+
